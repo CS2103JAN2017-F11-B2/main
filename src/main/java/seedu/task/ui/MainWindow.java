@@ -34,7 +34,7 @@ public class MainWindow extends UiPart<Region> {
 
     // Independent Ui parts residing in this Ui container
     private BrowserPanel browserPanel;
-    private TaskListPanel taskListPanel;
+    private PersonListPanel personListPanel;
     private Config config;
 
     @FXML
@@ -114,7 +114,7 @@ public class MainWindow extends UiPart<Region> {
 
     void fillInnerParts() {
         browserPanel = new BrowserPanel(browserPlaceholder);
-        taskListPanel = new TaskListPanel(getPersonListPlaceholder(), logic.getFilteredTaskList());
+        personListPanel = new PersonListPanel(getPersonListPlaceholder(), logic.getFilteredTaskList());
         new ResultDisplay(getResultDisplayPlaceholder());
         new StatusBarFooter(getStatusbarPlaceholder(), config.getTaskManagerFilePath());
         new CommandBox(getCommandBoxPlaceholder(), logic);
@@ -195,8 +195,8 @@ public class MainWindow extends UiPart<Region> {
         raise(new ExitAppRequestEvent());
     }
 
-    public TaskListPanel getPersonListPanel() {
-        return this.taskListPanel;
+    public PersonListPanel getPersonListPanel() {
+        return this.personListPanel;
     }
 
     void loadPersonPage(ReadOnlyTask person) {
