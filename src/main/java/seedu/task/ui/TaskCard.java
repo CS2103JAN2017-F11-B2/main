@@ -9,43 +9,43 @@ import seedu.task.model.task.ReadOnlyTask;
 
 public class TaskCard extends UiPart<Region> {
 
-	private static final String FXML = "TaskListCard.fxml";
+    private static final String FXML = "TaskListCard.fxml";
 
-	@FXML
-	private HBox cardPane;
-	@FXML
-	private Label taskName;
-	@FXML
+    @FXML
+    private HBox cardPane;
+    @FXML
+    private Label taskName;
+    @FXML
     private Label id;
-	@FXML
-	private Label taskDate;
-	@FXML
-	private Label taskTime;
-	@FXML
-	private Label taskDescription;
-	@FXML
+    @FXML
+    private Label taskDate;
+    @FXML
+    private Label taskTime;
+    @FXML
+    private Label taskDescription;
+    @FXML
     private FlowPane tags;
 
-	
-	public TaskCard(ReadOnlyTask task, int displayedIndex) {
-		super(FXML);
-		
-		id.setText(displayedIndex + ". ");
-		if (task.getTaskName() != null) {
-			taskName.setText(task.getTaskName().toString());
-		}
-		if (task.getTaskDate() != null) {
-			taskDate.setText(task.getTaskDate().toString());
-		}
-		if (task.getTaskStartTime() != null && task.getTaskEndTime() != null) {
-			taskTime.setText(task.getTaskStartTime().toString() + "-" + task.getTaskEndTime().toString());
-		}
-		if (task.getTaskDescription() != null) {
-			taskDescription.setText(task.getTaskDescription().toString());
-		}
-		initTags(task);
+    public TaskCard(ReadOnlyTask task, int displayedIndex) {
+	super(FXML);
+
+	id.setText(displayedIndex + ". ");
+	if (task.getTaskName() != null) {
+	    taskName.setText(task.getTaskName().toString());
 	}
-	private void initTags(ReadOnlyTask task) {
-       task.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+	if (task.getTaskDate() != null) {
+	    taskDate.setText(task.getTaskDate().toString());
+	}
+	if (task.getTaskStartTime() != null && task.getTaskEndTime() != null) {
+	    taskTime.setText(task.getTaskStartTime().toString() + "-" + task.getTaskEndTime().toString());
+	}
+	if (task.getTaskDescription() != null) {
+	    taskDescription.setText(task.getTaskDescription().toString());
+	}
+	initTags(task);
+    }
+
+    private void initTags(ReadOnlyTask task) {
+	task.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 }

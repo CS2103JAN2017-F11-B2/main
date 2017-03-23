@@ -21,27 +21,23 @@ import seedu.task.logic.commands.IncorrectCommand;
 public class AddCommandParser {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the
+     * AddCommand and returns an AddCommand object for execution.
      */
     public Command parse(String args) {
-        ArgumentTokenizer argsTokenizer =
-                new ArgumentTokenizer(PREFIX_DATE, PREFIX_START_TIME, PREFIX_END_TIME, PREFIX_DESCRIPTION, PREFIX_TAG);
-        argsTokenizer.tokenize(args);
-        try {
-            return new AddCommand(
-                    argsTokenizer.getPreamble().get(),
-                    argsTokenizer.getValue(PREFIX_DATE).get(),
-                    argsTokenizer.getValue(PREFIX_START_TIME).get(),
-                    argsTokenizer.getValue(PREFIX_END_TIME).get(),
-                    argsTokenizer.getValue(PREFIX_DESCRIPTION).get(),
-                    ParserUtil.toSet(argsTokenizer.getAllValues(PREFIX_TAG))
-            );
-        } catch (NoSuchElementException nsee) {
-            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
-        } catch (IllegalValueException ive) {
-            return new IncorrectCommand(ive.getMessage());
-        }
+	ArgumentTokenizer argsTokenizer = new ArgumentTokenizer(PREFIX_DATE, PREFIX_START_TIME, PREFIX_END_TIME,
+		PREFIX_DESCRIPTION, PREFIX_TAG);
+	argsTokenizer.tokenize(args);
+	try {
+	    return new AddCommand(argsTokenizer.getPreamble().get(), argsTokenizer.getValue(PREFIX_DATE).get(),
+		    argsTokenizer.getValue(PREFIX_START_TIME).get(), argsTokenizer.getValue(PREFIX_END_TIME).get(),
+		    argsTokenizer.getValue(PREFIX_DESCRIPTION).get(),
+		    ParserUtil.toSet(argsTokenizer.getAllValues(PREFIX_TAG)));
+	} catch (NoSuchElementException nsee) {
+	    return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+	} catch (IllegalValueException ive) {
+	    return new IncorrectCommand(ive.getMessage());
+	}
     }
 
 }

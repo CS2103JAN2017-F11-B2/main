@@ -3,9 +3,8 @@ package seedu.task.commons.core;
 import seedu.task.commons.events.BaseEvent;
 
 /**
- * Base class for *Manager classes
- *
- * Registers the class' event handlers in eventsCenter
+ * Base class for *Manager classes Registers the class' event handlers in
+ * eventsCenter
  */
 public abstract class ComponentManager {
     protected EventsCenter eventsCenter;
@@ -14,15 +13,15 @@ public abstract class ComponentManager {
      * Uses default {@link EventsCenter}
      */
     public ComponentManager() {
-        this(EventsCenter.getInstance());
+	this(EventsCenter.getInstance());
     }
 
     public ComponentManager(EventsCenter eventsCenter) {
-        this.eventsCenter = eventsCenter;
-        eventsCenter.registerHandler(this);
+	this.eventsCenter = eventsCenter;
+	eventsCenter.registerHandler(this);
     }
 
     protected void raise(BaseEvent event) {
-        eventsCenter.post(event);
+	eventsCenter.post(event);
     }
 }
